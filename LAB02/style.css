@@ -353,3 +353,38 @@ body {
         width: 100%;
     }
 }
+/* =========================================
+   ACADEMIC MANAGEMENT SECTION (LAB 03)
+========================================= */
+.academic-card {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.report-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.report-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.badge-passed {
+    background-color: #198754;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.badge-failed {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
