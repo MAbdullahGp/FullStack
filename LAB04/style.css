@@ -6,7 +6,7 @@ body {
   padding: 0 15px;
 }
 
-/* Main Cards */
+
 .profile-card {
   background: #ffffff;
   border-radius: 12px;
@@ -15,18 +15,17 @@ body {
   border: 1px solid #e1e4e8;
 }
 
-/* Headings (Indigo Shade) */
+
 h3, .text-primary {
-  color: #4f46e5 !important; /* Modern Indigo color */
+  color: #4f46e5 !important;
 }
 
-/* Inner JS Generated Cards */
+
 .bg-light {
   background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
 }
 
-/* Stats Boxes */
 #task3Stats, #task4Stats {
   background-color: #eef2ff !important; /* Soft blue tint */
   border-color: #c7d2fe !important;
