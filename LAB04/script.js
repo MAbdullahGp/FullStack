@@ -1,4 +1,4 @@
-
+//task1
 const task1Students = [
     { name: "Ali", rollNumber: "BSCS-001", department: "Computer Science", semester: 6, cgpa: 3.45 },
     { name: "Ahmed", rollNumber: "BSCS-002", department: "Computer Science", semester: 5, cgpa: 2.80 },
@@ -96,6 +96,10 @@ document.getElementById("task2Output").innerHTML = `
     <p class="mb-0"><strong>Student Status:</strong> ${studentStudyStatus}</p>
 `;
 
+
+
+//task3
+
 const task3Students = [
     { name: "Sara", rollNumber: "BSCS-023", assignment: 18, midterm: 22, finalExam: 42 },
     { name: "Bilal", rollNumber: "BSCS-011", assignment: 10, midterm: 12, finalExam: 20 },
@@ -172,7 +176,7 @@ document.getElementById("task3Stats").innerHTML = `
     <strong>Failed Students:</strong> ${task3FailedCount}
 `;
 
-
+//task4
 
 class Task4Student {
     constructor(name, rollNumber, department, semester, cgpa, marks) {
