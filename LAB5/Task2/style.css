@@ -1,0 +1,33 @@
+:root {
+  --primary: #1f3864;
+  --accent: #2e75b6;
+  --light-bg: #f4f7fb;
+  --card-border: #dbe4ef;
+  --text: #2b2b2b;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  color: var(--text);
+  background-color: #ffffff;
+}
+
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid var(--card-border);
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(31, 56, 100, 0.06);
+  margin-bottom: 1.5rem;
+}
+
+.profile-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.profile-card p {
+  margin-bottom: 0.75rem;
+}
