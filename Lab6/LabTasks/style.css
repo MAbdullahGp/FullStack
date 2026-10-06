@@ -1,0 +1,22 @@
+#popupMessage {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #198754;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    z-index: 999;
+}
+
+.completed-course {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.longest-course {
+    background-color: #fff3cd !important;
+}

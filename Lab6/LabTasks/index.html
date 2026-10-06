@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 06 - All Tasks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light p-4">
+
+    <!-- TASK 1: INTERACTIVE COURSE PLANNER -->
+    <div class="container bg-white p-4 rounded shadow-sm mb-4">
+        <h3>Task 1: Course Planner</h3>
+        <div class="input-group mb-3">
+            <input type="text" id="courseInput" class="form-control" placeholder="Enter course name">
+            <button class="btn btn-primary" onclick="addCourse()">Add</button>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-warning btn-sm" onclick="highlightLongest()">Highlight Longest</button>
+            <button class="btn btn-danger btn-sm" onclick="clearCourses()">Clear All</button>
+        </div>
+        <ul id="courseList" class="list-group mb-3"></ul>
+        <h6>Total: <span id="totalCourses">0</span> | Completed: <span id="completedCourses">0</span></h6>
+    </div>
+
+    <!-- TASK 2: LIVE ID CARD GENERATOR -->
+    <div class="container bg-white p-4 rounded shadow-sm mb-4">
+        <h3>Task 2: Live ID Card Generator</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input type="text" id="cardName" class="form-control mb-2" oninput="updateCard()">
+                <label class="form-label">Roll Number</label>
+                <input type="text" id="cardRoll" class="form-control mb-2" oninput="updateCard()">
+                <label class="form-label">Department</label>
+                <input type="text" id="cardDept" class="form-control mb-2" oninput="updateCard()">
+                <label class="form-label">Semester</label>
+                <input type="text" id="cardSem" class="form-control mb-2" oninput="updateCard()">
+                <label class="form-label">Card Background Color</label>
+                <input type="color" id="cardBg" class="form-control form-control-color w-100" value="#0d6efd" oninput="updateCard()">
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div id="idCard" class="card text-white p-3 w-100" style="background-color: #0d6efd;">
+                    <h5 class="text-center border-bottom pb-2">STUDENT ID CARD</h5>
+                    <p class="m-1"><strong>Name:</strong> <span id="previewName">---</span></p>
+                    <p class="m-1"><strong>Roll No:</strong> <span id="previewRoll">---</span></p>
+                    <p class="m-1"><strong>Dept:</strong> <span id="previewDept">---</span></p>
+                    <p class="m-1"><strong>Semester:</strong> <span id="previewSem">---</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 3: REGISTRATION FORM WITH REALTIME VALIDATION -->
+    <div class="container bg-white p-4 rounded shadow-sm mb-4">
+        <h3>Task 3: Registration Form</h3>
+        <form onsubmit="return validateForm()">
+            <label for="regAge" class="my-2">Age</label>
+            <input type="number" class="form-control" id="regAge">
+
+            <label for="email" class="my-2">Email</label>
+            <input type="email" class="form-control" id="email" oninput="checkEmail()">
+            <h6 id="emailError" class="text-danger mt-1"></h6>
+
+            <label for="password" class="my-2">Password</label>
+            <input type="password" class="form-control" id="password" oninput="checkPasswordStrength()">
+            <h6 id="passwordStrength" class="mt-1"></h6>
+
+            <label for="confirmPassword" class="my-2">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword"><br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-danger" onclick="return confirmReset()">Reset</button>
+        </form>
+        <h6 id="error" class="text-danger mt-3"></h6>
+    </div>
+
+    <!-- TASK 4: STUDENT MANAGEMENT DASHBOARD -->
+    <div class="container bg-white p-4 rounded shadow-sm mb-4">
+        <h3>Task 4: Student Dashboard</h3>
+        <form onsubmit="return saveStudent()" class="row g-2 mb-3">
+            <input type="hidden" id="editIndex" value="-1">
+            <div class="col-md-3"><input type="text" id="dashName" class="form-control" placeholder="Name" required></div>
+            <div class="col-md-3"><input type="text" id="dashRoll" class="form-control" placeholder="Roll No" required></div>
+            <div class="col-md-2">
+                <select id="dashDept" class="form-select" required>
+                    <option value="">Dept</option>
+                    <option value="CS">CS</option>
+                    <option value="SE">SE</option>
+                    <option value="EE">EE</option>
+                </select>
+            </div>
+            <div class="col-md-2"><input type="number" step="0.01" min="0" max="4" id="dashCgpa" class="form-control" placeholder="CGPA" required></div>
+            <div class="col-md-2"><button type="submit" id="dashBtn" class="btn btn-success w-100">Add Student</button></div>
+        </form>
+
+        <div class="row g-2 mb-3">
+            <div class="col-md-4"><input type="text" id="searchBox" class="form-control" placeholder="Search..." oninput="renderDashboard()"></div>
+            <div class="col-md-4">
+                <select id="filterDept" class="form-select" onchange="renderDashboard()">
+                    <option value="All">All Departments</option>
+                    <option value="CS">CS</option>
+                    <option value="SE">SE</option>
+                    <option value="EE">EE</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select id="sortCgpa" class="form-select" onchange="renderDashboard()">
+                    <option value="none">Sort CGPA</option>
+                    <option value="asc">Low to High</option>
+                    <option value="desc">High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll</th>
+                    <th>Dept</th>
+                    <th>CGPA</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+        </table>
+        <h6>Total Students: <span id="totalStudents">0</span> | Average CGPA: <span id="avgCgpa">0.00</span></h6>
+    </div>
+
+    <div id="popupMessage">Form Submitted Successfully!</div>
+    <script src="script.js"></script>
+</body>
+</html>
