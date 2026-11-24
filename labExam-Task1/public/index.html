@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q1. Library Book Tracker</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <i class="bi bi-book-half fs-3"></i>
+        <span>Library Book Tracker</span>
+      </a>
+      <span class="navbar-text text-white-50">
+        Q1. Full Stack Assessment
+      </span>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="container my-4">
+    <!-- Notification Alert Area -->
+    <div id="alertContainer"></div>
+
+    <div class="row g-4">
+      <!-- Add Book Form Section -->
+      <div class="col-lg-4 col-md-5">
+        <div class="card shadow-sm border-0 sticky-top" style="top: 1.5rem; z-index: 10;">
+          <div class="card-header bg-white py-3 border-bottom">
+            <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+              <i class="bi bi-plus-circle-fill text-primary"></i> Add New Book
+            </h5>
+          </div>
+          <div class="card-body">
+            <form id="addBookForm" novalidate>
+              <!-- Title Field -->
+              <div class="mb-3">
+                <label for="bookTitle" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookTitle"
+                  placeholder="e.g. Clean Code"
+                  required
+                >
+                <div class="invalid-feedback">Title is required and cannot be empty.</div>
+              </div>
+
+              <!-- Author Field -->
+              <div class="mb-3">
+                <label for="bookAuthor" class="form-label fw-semibold">Author <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookAuthor"
+                  placeholder="e.g. Robert C. Martin"
+                  required
+                >
+                <div class="invalid-feedback">Author is required and cannot be empty.</div>
+              </div>
+
+              <!-- Category Field -->
+              <div class="mb-3">
+                <label for="bookCategory" class="form-label fw-semibold">Category <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bookCategory"
+                  placeholder="e.g. Technology, Fiction, History"
+                  required
+                >
+                <div class="invalid-feedback">Category is required and cannot be empty.</div>
+              </div>
+
+              <!-- Publication Year Field -->
+              <div class="mb-3">
+                <label for="bookYear" class="form-label fw-semibold">Publication Year <span class="text-danger">*</span></label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="bookYear"
+                  placeholder="e.g. 2008"
+                  min="1000"
+                  max="2100"
+                  required
+                >
+                <div class="invalid-feedback">Please enter a valid publication year (between 1000 and 2100).</div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid gap-2 pt-2">
+                <button type="submit" class="btn btn-primary btn-lg shadow-sm" id="submitBtn">
+                  <i class="bi bi-plus-lg me-1"></i> Add Book
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Books Display and Filter Section -->
+      <div class="col-lg-8 col-md-7">
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-3">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-7">
+                <div class="input-group">
+                  <label class="input-group-text bg-light text-muted" for="categoryFilter">
+                    <i class="bi bi-funnel-fill me-1"></i> Filter Category
+                  </label>
+                  <select class="form-select" id="categoryFilter">
+                    <option value="ALL">All Categories</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-5 d-flex justify-content-md-end align-items-center gap-2 mt-2 mt-md-0">
+                <!-- View Mode Toggle (Cards / Table) -->
+                <div class="btn-group" role="group" aria-label="View toggle">
+                  <button type="button" class="btn btn-outline-secondary active" id="viewCardsBtn" title="Card View">
+                    <i class="bi bi-grid-fill"></i> Cards
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary" id="viewTableBtn" title="Table View">
+                    <i class="bi bi-table"></i> Table
+                  </button>
+                </div>
+                <span class="badge bg-secondary rounded-pill px-3 py-2" id="bookCountBadge">0 books</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book Cards Container -->
+        <div id="cardsView" class="row g-3"></div>
+
+        <!-- Book Table Container -->
+        <div id="tableView" class="card shadow-sm border-0 d-none">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" style="width: 30%">Title</th>
+                  <th scope="col" style="width: 25%">Author</th>
+                  <th scope="col" style="width: 20%">Category</th>
+                  <th scope="col" style="width: 15%">Year</th>
+                  <th scope="col" class="text-end" style="width: 10%">Action</th>
+                </tr>
+              </thead>
+              <tbody id="booksTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Empty State Container -->
+        <div id="emptyState" class="card shadow-sm border-0 d-none">
+          <div class="card-body empty-state">
+            <i class="bi bi-journal-x"></i>
+            <h5>No Books Found</h5>
+            <p class="text-muted mb-0">There are no books matching your current filter. Try adding a new book or resetting the category filter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Application JS -->
+  <script src="js/app.js"></script>
+</body>
+</html>
