@@ -1,0 +1,37 @@
+[
+  {
+    "id": 2,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "category": "Technology",
+    "year": 2008
+  },
+  {
+    "id": 3,
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt & David Thomas",
+    "category": "Technology",
+    "year": 1999
+  },
+  {
+    "id": 4,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "category": "Fiction",
+    "year": 1960
+  },
+  {
+    "id": 5,
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "category": "History",
+    "year": 2011
+  },
+  {
+    "id": 7,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "category": "Programming",
+    "year": 2008
+  }
+]
